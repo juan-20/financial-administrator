@@ -21,7 +21,7 @@ export const Content = styled.div`
         padding: 0 2rem;
         border-radius: 0.25rem;
         height: 3rem;
-
+        background: #6832F5;
         transition: filter 0.2s;
 
         &:hover{
