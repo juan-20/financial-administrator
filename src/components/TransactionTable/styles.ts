@@ -27,7 +27,7 @@ export const Container = styled.div`
             }
 
             &.deposit{
-                color: var(--grenn);
+                color: #33cc95;
             }
 
             &.withdraw{
