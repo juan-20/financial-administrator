@@ -5,7 +5,6 @@ import { useState } from 'react';
 import Header from './components/Header';
 import NewTransactionModal from './components/NewTransactionModal';
 import { TransactionsProvider } from './context/TransactionsContext';
-import { TasksProvider } from './context/TaskContext';
 
 
 
@@ -21,16 +20,15 @@ export function App() {
   }
   return (
     <TransactionsProvider>
-      <TasksProvider>
-        <GlobalStyle />
-        <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
-        <Dashboard />
+      <GlobalStyle />
+      <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
+      <Dashboard />
 
-        <NewTransactionModal
-          isOpen={isNewTransactionModalOpen}
-          onRequestClose={handleCloseNewTransactionModal}
-        />
-      </TasksProvider>
+      <NewTransactionModal
+        isOpen={isNewTransactionModalOpen}
+        onRequestClose={handleCloseNewTransactionModal}
+      />
+
     </TransactionsProvider>
   );
 }

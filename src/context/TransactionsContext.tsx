@@ -29,20 +29,29 @@ interface TransactionsProviderProps {
 
 interface TransactionsContextData {
     transactions: Transaction[];
-    createTransaction: (transaction: TransactionInput) => void;
+    createTransaction: (transaction: TransactionInput) => Promise<void>;
 }
 
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
+
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
     useEffect(() => {
         api.get('transactions')
             .then(response => setTransactions(response.data.transactions))
+        console.log(transactions)
     }, [])
 
-    function createTransaction(transaction: TransactionInput) {
+    async function createTransaction(transactionInput: TransactionInput) {
+        const response = await api.post('/transactions', {
+            ...transactionInput,
+            createdAt: new Date()
+        });
+        const { transaction } = response.data;
 
-        api.post('/transactions', transaction)
+        setTransactions([
+            ...transactions, transaction
+        ]);
     }
 
     return (
